@@ -14,39 +14,55 @@ public class loginAdvantegeShopping {
     @Test
     void deveFazerLogin() throws InterruptedException {
 
+        //elementos
+        By clicarUsarioInicial = By.id("menuUser");
+        By campoUsuario =  By.name("username");
+        By campoSenha =   By.name("password");
+        By btnLogar = By.id("sign_in_btn");
+        By usuarioLogin = By.id("menuUserLink");
+        By textoTituloHeader = By.xpath("/html/body/header/nav/ul/li[8]/a");
+
+        // variaveis globais
+
+        String url = "https://www.advantageonlineshopping.com/#/";
+
+        //usuario
+        String userName = "testeQaVerso";
+        String senha = "Fc230978@";
+        String textoTitulo = "OUR PRODUCTS";
+        String usuarioPerfil = "testeQaVerso";
+
+
+
+
+
         // Abrir o navegador
         // monstra aonde esta o chrome Driver
         System.setProperty("webdriver.chrome.driver" , "driver/chromedriver");
         WebDriver navegador = new ChromeDriver();
 
         // comando para abrir o site
-        navegador.get("https://www.advantageonlineshopping.com/#/");
+        navegador.get(url);
 
         // maximazer a tela
         navegador.manage().window().maximize();
 
         // comando de clicar
-        navegador.findElement(By.id("menuUser")).click();
+        navegador.findElement(clicarUsarioInicial).click();
 
-
-        String userName = "testeQaVerso";
-        String senha = "Fc230978@";
         // comando de preencher
-        navegador.findElement(By.name("username")).sendKeys(userName);
-        navegador.findElement(By.name("password")).sendKeys(senha);
+        navegador.findElement(campoUsuario).sendKeys(userName);
+        navegador.findElement(campoSenha).sendKeys(senha);
         Thread.sleep(2000);
-        navegador.findElement(By.id("sign_in_btn")).click();
+        navegador.findElement(btnLogar).click();
 
         Thread.sleep(3000);
 
         // Validar Texto
-        String usuarioLogin = "testeQaVerso";
-        String usuarioLogado = navegador.findElement(By.id("menuUserLink")).getText();
-        assertEquals(usuarioLogin ,usuarioLogado);
-
-        String products = "OUR PRODUCTS";
-        String productsTela = navegador.findElement(By.xpath("/html/body/header/nav/ul/li[8]/a")).getText();
-        assertEquals(products ,productsTela);
+        String usuarioLogado = navegador.findElement(usuarioLogin).getText();
+        assertEquals(usuarioPerfil ,usuarioLogado);
+        String productsTela = navegador.findElement(textoTituloHeader).getText();
+        assertEquals(textoTitulo ,productsTela);
 
 
         // fechar navegador
