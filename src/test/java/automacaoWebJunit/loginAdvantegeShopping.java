@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class loginAdvantegeShopping {
 
+
+    //OLA KALYNE Tudo bem novo commit
+
     @Test
     void deveFazerLogin() throws InterruptedException {
 
